@@ -16,35 +16,42 @@ module Sysresources
 
       # stats header #
       $header = "current".light_blue     
+      $root   = "/home"
+      $error  = " no info!".red
       $disk   = Sys::Filesystem
 
       # color stat #
       def stat(stat)
         stat = stat.to_s
-        return stat.yellow
+        stat.yellow
       end
 
       # color name #    
       def name(name)
         name = name.to_s
-        return name.white    
+        name.white    
       end
 
       # get disk stats #
       def get_disk
         multi = 1024
-        root = $disk.stat("/home")
+        dirc = File.exist?($root) ? $root : "/"
+        root = $disk.stat(dirc)
         size = root.block_size
         avil = root.blocks_available
         gb = size * avil /multi/multi/multi
-        return stat("#{gb}G")
+        stat("#{gb}G")
+        rescue    
+          $error
       end
 
       # get memory stats #
       def get_ram
         cmd = %x(free -h)
         free = cmd.split(" ")[9]
-        return stat(free) 
+        stat(free) 
+        rescue    
+          $error
       end
 
       # get cpu cores #
@@ -58,7 +65,9 @@ module Sysresources
       def get_load
         info = Sys::CPU.load_avg
         load = info.join(", ")
-        return stat(load)
+        stat(load)
+        rescue    
+          $error
       end
 
       # get cpu percent #
@@ -66,7 +75,9 @@ module Sysresources
         cmd = %x(ps -eo "%C").split("\n")
         sum = cmd.map(&:to_f).reduce(0,:+)
         cpu = (sum/cores).round(2)
-        return stat(cpu) + "%"
+        stat(cpu) + "%"
+        rescue    
+          $error
       end
 
       # get uptime #
@@ -74,13 +85,17 @@ module Sysresources
         cmd = %x(uptime)   
         upt = cmd.split(",")[0]
         upt = upt.split("up")[1]
-        return stat(upt.strip())
+        stat(upt.strip())
+        rescue    
+          $error
       end
 
       # get running processes #    
       def get_proc
         proc = %x(ps -A --no-headers | wc -l)
-        return stat(proc)
+        stat(proc)
+        rescue    
+          $error
       end
 
       # get header #
