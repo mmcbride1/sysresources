@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["mmcbride1"]
   spec.email         = ["mrmcbride@smcm.edu"]
 
-  spec.summary       = %q{command line tool to print basic system hardware resources (disk, cpu, ram, proc).}
+  spec.summary       = %q{LINUX ONLY: command line tool to print basic system hardware resources (disk, cpu, ram, proc).}
   spec.homepage      = "https://github.com/mmcbride1/sysresources"
   spec.license       = "MIT"
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|

@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'sysresources'
+
+stats = Sysresources::SysResource.new
+stats.run_stats    
