@@ -57,7 +57,7 @@ module Sysresources
       # get cpu cores #
       def cores 
         raw =  Sys::CPU.processors
-        cnt = raw[0]['cpu_coresn']
+        cnt = raw[0]['cpu_cores']
         return cnt.to_i
       end
 
