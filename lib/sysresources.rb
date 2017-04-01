@@ -123,7 +123,8 @@ module Sysresources
       # print stats #
       def run_stats     
         header
-        get_stat   
+        get_stat  
+        exit(0) 
       end
    end
 end
