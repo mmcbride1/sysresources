@@ -19,7 +19,25 @@ Or install it yourself as:
 
 ## Usage
 
-simply run 'sysresources' at the command line.    
+simply run 'sysresources' at the command line. may be a good idea to alias this command as 'stats' or 'system' to make things shorter.      
+
+legend: 
+
+disk(G):             remaining disk space on "/home" partition. Defaults to reading "/" if "/home" not found.
+ram(G):              memory AVAILABLE    
+cpu(%):              percent cpu being spent at current point in time     
+uptime(s/m/h/d):     system uptime    
+process(#):          number of running processes    
+
+example output:
+
+[ gb-i75930k current ]
+
+ xxxxxxxxx disk:370G
+ xxxxxxxxx ram:27G
+ xxxxxxxxx cpu:2.67%
+ xxxxxxxxx uptime:3 days
+ xxxxxxxxx process:278
 
 ## Development
 
