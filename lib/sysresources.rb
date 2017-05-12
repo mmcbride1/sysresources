@@ -14,6 +14,13 @@ module Sysresources
 
    class SysResource    
 
+      # print info #
+      $CPU = "current cpu usage: "
+      $DSK = "remaining disk: "
+      $RAM = "memory available: "
+      $PRC = "running processes: "
+      $UPT = "system uptime: "
+
       # stats header #
       $header = "current".light_blue     
       $root   = "/home"
@@ -120,6 +127,36 @@ module Sysresources
         end
       end
 
+      # prints cpu stat #
+      def print_cpu
+        puts name($CPU) +
+        get_cpu
+      end
+
+      # prints disk stat #
+      def print_disk
+        puts name($DSK) +
+        get_disk.to_s
+      end
+      
+      # prints ram stat #
+      def print_ram
+        puts name($RAM) +
+        get_ram
+      end
+
+      # print upt stat #
+      def print_upt
+        puts name($UPT) +
+        get_upt
+      end
+
+      # prints proc stat #
+      def print_proc
+        puts name($PRC) +
+        get_proc.delete("\n")
+      end
+   
       # print stats #
       def run_stats     
         header

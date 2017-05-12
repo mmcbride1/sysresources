@@ -1,6 +1,87 @@
 #!/usr/bin/env ruby
 
+require 'optparse'    
 require 'sysresources'
 
 stats = Sysresources::SysResource.new
-stats.run_stats    
+
+# Short option #
+$hlp = "-h"
+$cpu = "-c"
+$dsk = "-d"
+$ram = "-r"
+$prc = "-p"
+$upt = "-u"
+
+# Long option #
+$HLP = "--help"
+$CPU = "--cpu"
+$DSK = "--disk"
+$RAM = "--ram"
+$PRC = "--process"
+$UPT = "--uptime"
+
+# Description #
+$HLPD = ">> displays commands"
+$CPUD = ">> current cpu usage %"
+$DSKD = ">> remaining disk GB"
+$RAMD = ">> memory available GB"
+$PRCD = ">> running processes"
+$UPTD = ">> system uptime"
+
+# Store command line option #
+options = {}
+
+# Option parser #
+parser = OptionParser.new do |opt|
+
+  # Command line option #
+  opt.on($cpu, $CPU, $CPUD) do |c|
+    options[:cpu] = c
+  end
+  opt.on($ram, $RAM, $RAMD) do |r|
+    options[:ram] = r
+  end
+  opt.on($dsk, $DSK, $DSKD) do |d|
+    options[:dsk] = d
+  end 
+  opt.on($upt, $UPT, $UPTD) do |u|
+    options[:upt] = u
+  end
+  opt.on($prc, $PRC, $PRCD) do |p|
+    options[:prc] = p
+  end
+  opt.on($hlp, $HLP, $HLPD) do |h|
+    puts opt
+    exit
+  end
+end
+
+# If no arg run full stat #
+if !ARGV.any?
+  stats.run_stats
+  exit
+end
+
+# Parse arg #
+begin parser.parse! ARGV
+  case
+    when options[:cpu]
+      stats.print_cpu
+    when options[:dsk]
+      stats.print_disk
+    when options[:ram]
+      stats.print_ram
+    when options[:prc]
+      stats.print_proc
+    when options[:upt]
+      stats.print_upt
+    else
+      puts parser
+  end
+
+# Invalid option #
+rescue OptionParser::InvalidOption => x
+  puts x
+  puts parser    
+end
