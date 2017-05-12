@@ -1,3 +1,3 @@
 module Sysresources
-  VERSION = "0.2.6"
+  VERSION = "Version 0.2.7"
 end
