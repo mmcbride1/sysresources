@@ -14,12 +14,12 @@ $prc = "-p"
 $upt = "-u"
 
 # Long option #
-$HLP = "--help"
-$CPU = "--cpu"
-$DSK = "--disk"
-$RAM = "--ram"
-$PRC = "--process"
-$UPT = "--uptime"
+$HLPX = "--help"
+$CPUX = "--cpu"
+$DSKX = "--disk"
+$RAMX = "--ram"
+$PRCX = "--process"
+$UPTX = "--uptime"
 
 # Description #
 $HLPD = ">> displays commands"
@@ -36,22 +36,22 @@ options = {}
 parser = OptionParser.new do |opt|
 
   # Command line option #
-  opt.on($cpu, $CPU, $CPUD) do |c|
+  opt.on($cpu, $CPUX, $CPUD) do |c|
     options[:cpu] = c
   end
-  opt.on($ram, $RAM, $RAMD) do |r|
+  opt.on($ram, $RAMX, $RAMD) do |r|
     options[:ram] = r
   end
-  opt.on($dsk, $DSK, $DSKD) do |d|
+  opt.on($dsk, $DSKX, $DSKD) do |d|
     options[:dsk] = d
   end 
-  opt.on($upt, $UPT, $UPTD) do |u|
+  opt.on($upt, $UPTX, $UPTD) do |u|
     options[:upt] = u
   end
-  opt.on($prc, $PRC, $PRCD) do |p|
+  opt.on($prc, $PRCX, $PRCD) do |p|
     options[:prc] = p
   end
-  opt.on($hlp, $HLP, $HLPD) do |h|
+  opt.on($hlp, $HLPX, $HLPD) do |h|
     puts opt
     exit
   end
