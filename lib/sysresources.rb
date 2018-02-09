@@ -123,7 +123,7 @@ module Sysresources
           "process:" => get_proc
         }
         fromsys.each do |k,v|
-          puts " xxxxxxxxx #{name(k)}"+"#{v}"
+          puts " --------- #{name(k)}"+"#{v}"
         end
       end
 
