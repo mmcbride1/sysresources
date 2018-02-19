@@ -109,7 +109,7 @@ module Sysresources
       def header
         host = %x(hostname).strip()
         end_ = "\n\n"
-        for_ = "[ #{host} #{$header} ]"
+        for_ = "* #{host} #{$header} *"
         puts "\n"+for_+end_
       end
 
